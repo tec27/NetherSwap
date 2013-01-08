@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="NetherSwap">
+    <file>Resources/icons/netherswap-in.ico</file>
+    <file>Resources/icons/netherswap-out.ico</file>
+    <file>Resources/icons/netherswap-tray.ico</file>
+  </qresource>
+</RCC>

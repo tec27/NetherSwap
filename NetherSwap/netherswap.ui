@@ -1,0 +1,522 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NetherSwapClass</class>
+ <widget class="QMainWindow" name="NetherSwapClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>380</width>
+    <height>180</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>NetherSwap</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="netherswap.qrc">
+    <normaloff>:/NetherSwap/Resources/icons/netherswap-tray.ico</normaloff>:/NetherSwap/Resources/icons/netherswap-tray.ico</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#central_widget {
+	border-top: 1px solid #333333;
+	border-bottom: 1px solid #cccccc;
+	border-left: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #333333, stop: 1 #cccccc);
+	border-right: 1px solid qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #333333, stop: 1 #cccccc);
+}
+
+#title_bar {
+	border: none;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #868a8f, stop: 0.08 #5f6468,
+		stop: 0.49999 #31363a, stop: 0.5 #21262a,
+		stop: 0.9 #061011, stop: 1 #040a0f);
+}
+
+#app_title {
+	color: #efefef;
+	margin-left: 2px;
+}
+
+#title_bar QPushButton {
+	color: #333;
+	border: 1px solid #555;
+	border-radius: 2px;
+	padding: 0px;
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+		fx: 0.3, fy: -0.4,
+		radius: 1.35, stop: 0 #fff, stop: 1 #888);
+	min-width: 24px;
+}
+
+#title_bar QPushButton:hover {
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+		fx: 0.3, fy: -0.4,
+		radius: 1.35, stop: 0 #fff, stop: 1 #b0b4b8);
+}
+
+#title_bar QPushButton:pressed {
+	background: qradialgradient(cx: 0.4, cy: -0.1,
+		fx: 0.4, fy: -0.1,
+		radius: 1.35, stop: 0 #fff, stop: 1 #d0d4d8);
+}
+
+#content {
+	border: none;
+	background: #21262a;
+}
+
+#footer {
+	border: none;
+	background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+		stop: 0 #666a6f, stop: 0.08 #3f4448,
+		stop: 0.39999 #31363a, stop: 0.4 #21262a,
+		stop: 0.9 #061011, stop: 1 #040a0f);
+}
+
+#footer QLabel {
+	color: #f5f5f5;
+}
+
+#hotkeys_box {
+	color: #f5f5f5;
+	margin-top: 6px;
+	border: 2px solid #5f6468;
+	border-radius: 5px;
+}
+
+#hotkeys_box::title {
+	subcontrol-origin: border;
+	left: 6px;
+	top: -8px;
+}
+
+#hotkeys_box QLabel {
+	color: #f5f5f5;
+}
+
+#hotkeys_box QPushButton {
+	color: #333;
+	border: 1px solid #555;
+	border-radius: 2px;
+	padding: 0px;
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+		fx: 0.3, fy: -0.4,
+		radius: 1.35, stop: 0 #fff, stop: 1 #888);
+	min-width: 24px;
+}
+
+#hotkeys_box QPushButton:hover {
+	background: qradialgradient(cx: 0.3, cy: -0.4,
+		fx: 0.3, fy: -0.4,
+		radius: 1.35, stop: 0 #fff, stop: 1 #b0b4b8);
+}
+
+#hotkeys_box QPushButton:pressed {
+	background: qradialgradient(cx: 0.4, cy: -0.1,
+		fx: 0.4, fy: -0.1,
+		radius: 1.35, stop: 0 #fff, stop: 1 #d0d4d8);
+}
+#status_label {
+	color: #f5f5f5;
+}</string>
+  </property>
+  <widget class="QWidget" name="central_widget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="leftMargin">
+     <number>1</number>
+    </property>
+    <property name="topMargin">
+     <number>1</number>
+    </property>
+    <property name="rightMargin">
+     <number>1</number>
+    </property>
+    <property name="bottomMargin">
+     <number>1</number>
+    </property>
+    <item>
+     <widget class="QFrame" name="title_bar">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>2</number>
+       </property>
+       <property name="leftMargin">
+        <number>4</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>4</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="app_icon">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="netherswap.qrc">:/NetherSwap/Resources/icons/netherswap-tray.ico</pixmap>
+         </property>
+         <property name="scaledContents">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="app_title">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>12</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+           <underline>false</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>NetherSwap</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="minimize_btn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>26</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>15</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>–</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="close_btn">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>26</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>24</width>
+           <height>24</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string notr="true">X</string>
+         </property>
+         <property name="flat">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="content">
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>9</pointsize>
+       </font>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QGroupBox" name="hotkeys_box">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="title">
+          <string>Hotkeys</string>
+         </property>
+         <layout class="QFormLayout" name="formLayout">
+          <property name="verticalSpacing">
+           <number>12</number>
+          </property>
+          <property name="leftMargin">
+           <number>4</number>
+          </property>
+          <property name="rightMargin">
+           <number>4</number>
+          </property>
+          <item row="0" column="0">
+           <widget class="QLabel" name="in_game_label">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Game Scene</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="out_of_game_label">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Background/Menu Scene</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="HotkeyButton" name="in_game_hotkey_btn">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Not Set</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1">
+           <widget class="HotkeyButton" name="out_of_game_hotkey_btn">
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Not Set</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="status_label">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>11</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Initializing...</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QFrame" name="footer">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="frameShape">
+       <enum>QFrame::StyledPanel</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Raised</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>3</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>3</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="version_label">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>v1.0</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_3">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QLabel" name="author_label">
+         <property name="font">
+          <font>
+           <family>Segoe UI</family>
+           <pointsize>9</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>by tec27</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>HotkeyButton</class>
+   <extends>QPushButton</extends>
+   <header>hotkey_button.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="netherswap.qrc"/>
+ </resources>
+ <connections/>
+</ui>
