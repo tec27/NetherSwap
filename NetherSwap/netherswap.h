@@ -44,6 +44,8 @@ private slots:
   void StatusChanged(GameStatus);
   void InGameHotkeyChanged(const HotkeySequence& keys);
   void OutOfGameHotkeyChanged(const HotkeySequence& keys);
+  void SendInGameHotkey();
+  void SendOutOfGameHotkey();
 };
 
 #endif // NETHERSWAP_H

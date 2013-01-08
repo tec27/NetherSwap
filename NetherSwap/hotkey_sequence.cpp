@@ -4,6 +4,8 @@
 #include "hotkey_sequence.h"
 
 int HotkeySequence::GetKeySequenceValue(int key, const Qt::KeyboardModifiers modifiers) {
+  key &= ~Qt::MODIFIER_MASK;
+  
   if(modifiers & Qt::ShiftModifier) {
     key += Qt::SHIFT;
   }
@@ -35,7 +37,11 @@ HotkeySequence::HotkeySequence(const QKeyEvent* key_event, const Qt::KeyboardMod
 
 }
 
-HotkeySequence::HotkeySequence(const QString& serialized_str) {
+HotkeySequence::HotkeySequence(const QString& serialized_str)
+  : modifiers_(0),
+    scan_code_(0),
+    virtual_key_(0),
+    key_(0) {
   QStringList parts = serialized_str.split(",");
   bool ok;
   
@@ -52,7 +58,7 @@ HotkeySequence::HotkeySequence(const QString& serialized_str) {
     if(!ok) virtual_key_ = 0;
   }
   if(parts.size() > 3) {
-    key_ = parts[2].toInt(&ok);
+    key_ = parts[3].toInt(&ok);
     if(!ok) key_ = 0;
   }
 

@@ -53,15 +53,35 @@ void PushKeyUpForModifiers(const Qt::KeyboardModifiers modifiers, QVector<INPUT>
 }
 
 void PressHotkey(const HotkeySequence* keys) {
-  QVector<INPUT> inputs;
-  inputs.reserve(10); // not really that much memory, might as well reap the performance benefits
+  // These have to be split up and delayed in order to work properly with OBS
+  // It checks the hotkeys using GetAsyncKeyState once every 30ms (ugh) and then has
+  // some really weird conditions regarding modifiers and the key (it has to have detected the
+  // modifiers were down BEFORE it detects the key was pressed?)
 
-  PushKeyDownForModifiers(keys->modifiers(), inputs);
-  PushKeyDown(keys->virtual_key(), inputs);
-  PushKeyUp(keys->virtual_key(), inputs);
-  PushKeyUpForModifiers(keys->modifiers(), inputs);
+  // Note that OBS will still have issues with this sometimes if your hotkey contains modifiers
+  // you pressed to put the game to the background (namely Alt and using Alt-Tab) so I'd
+  // recommend you try to have as few modifiers in your OBS hotkeys as possible
+  QVector<INPUT> down_modifiers;
+  QVector<INPUT> up_modifiers;
+  QVector<INPUT> key_press;
+  down_modifiers.reserve(4);
+  up_modifiers.reserve(4);
+  key_press.reserve(2);
 
-  SendInput(inputs.size(), inputs.data(), sizeof(INPUT));
+  PushKeyDownForModifiers(keys->modifiers(), down_modifiers);
+  PushKeyDown(keys->virtual_key(), key_press);
+  PushKeyUp(keys->virtual_key(), key_press);
+  PushKeyUpForModifiers(keys->modifiers(), up_modifiers);
+
+  if(down_modifiers.size() > 0) {
+    SendInput(down_modifiers.size(), down_modifiers.data(), sizeof(INPUT));
+    Sleep(70);
+  }
+  SendInput(key_press.size(), key_press.data(), sizeof(INPUT));
+  if(up_modifiers.size() > 0) {
+    Sleep(70);
+    SendInput(up_modifiers.size(), up_modifiers.data(), sizeof(INPUT));
+  }
 }
 
 }

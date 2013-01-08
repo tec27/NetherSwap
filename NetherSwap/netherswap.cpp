@@ -83,25 +83,19 @@ void NetherSwap::StatusChanged(GameStatus status) {
   switch(status) {
     case kUnknown: {
       tray_icon_.setIcon(QIcon(":/NetherSwap/Resources/icons/netherswap-tray.ico"));
-      if(out_of_game_hotkey_ != nullptr) {
-        HotkeySimulator::PressHotkey(out_of_game_hotkey_.get());
-      }
+      QTimer::singleShot(150, this, SLOT(SendOutOfGameHotkey()));
       break;
     }
     case kInMenu: {
       ui.status_label->setText("Game is in menu/in the background");
       tray_icon_.setIcon(QIcon(":/NetherSwap/Resources/icons/netherswap-out.ico"));
-      if(out_of_game_hotkey_ != nullptr) {
-        HotkeySimulator::PressHotkey(out_of_game_hotkey_.get());
-      }
+      QTimer::singleShot(150, this, SLOT(SendOutOfGameHotkey()));
       break;
     }
     case kInGame: {
       ui.status_label->setText("Game is in the foreground");
       tray_icon_.setIcon(QIcon(":/NetherSwap/Resources/icons/netherswap-in.ico"));
-      if(in_game_hotkey_ != nullptr) {
-        HotkeySimulator::PressHotkey(in_game_hotkey_.get());
-      }
+      QTimer::singleShot(150, this, SLOT(SendInGameHotkey()));
       break;
     }
   }
@@ -172,4 +166,18 @@ void NetherSwap::OutOfGameHotkeyChanged(const HotkeySequence& keys) {
   settings_.endGroup();
 
   out_of_game_hotkey_.reset(new HotkeySequence(keys));
+}
+
+// These are to try and make hotkey presses with OBS at least slightly more reliable
+// Making the program react slower to cope with shitty hotkey code is saddening though :(
+void NetherSwap::SendInGameHotkey() {
+  if(in_game_hotkey_ != nullptr) {
+    HotkeySimulator::PressHotkey(in_game_hotkey_.get());
+  }
+}
+
+void NetherSwap::SendOutOfGameHotkey() {
+  if(out_of_game_hotkey_ != nullptr) {
+    HotkeySimulator::PressHotkey(out_of_game_hotkey_.get());
+  }
 }
